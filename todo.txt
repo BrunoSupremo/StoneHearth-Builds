@@ -1,0 +1,17 @@
+﻿mostrar mais builds do mesmo autor
+mostrar builds com as mesmas tags
+
+tags sugeridas pelos usuarios
+
+------------
+
+Notificação (comentarios, estrelinhas, achievements)
+
+------------
+
+remover zips de builds já deletadas
+
+
+
+quantidade de cada item
+SELECT item, count(item), sum(quantidade), nome FROM `itens_nos_templates` left join itens on itens.id=itens_nos_templates.item group by item

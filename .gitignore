@@ -1,3 +1,9 @@
+# sensitive files
+admin
+abrir_banco.php
+session.php
+brunosup_banco.sql
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

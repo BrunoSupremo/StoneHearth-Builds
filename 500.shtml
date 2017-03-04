@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Error</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css.css" type="text/css">
+</head>
+<body>
+	<nav>
+		<a class="fa fa-home active" href="/">StoneHearth Builds</a>
+	</nav>
+	<main id="home">
+		<section>
+			<h1>Error 500</h1>
+			<p>This means the server is super busy and you couldn't connect to it. It takes a few seconds normally to recover. So just try again after a minute or so.</p>
+		</section>
+	</main>
+</body>
+</html>
+<!-- 
+                                                                     
+--> 

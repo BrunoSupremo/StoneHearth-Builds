@@ -1,0 +1,364 @@
+@charset "utf-8";
+@font-face{
+	font-family:'FontAwesome';
+	src:url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?v=4.5.0');
+	src:url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'),url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+}
+@font-face{
+	font-family: 'grobold';
+	src: url('/font_grobold/grobold.eot');
+	src: url('/font_grobold/grobold.woff') format('woff'), url('/font_grobold/grobold.ttf') format('truetype');
+}
+.fa::before{
+	font-family: FontAwesome;
+	margin-right: 10px;
+}
+.fa-search::before	{content: "\f002";}
+.fa-upload::before	{content: "\f093";}
+.fa-users::before	{content: "\f0c0";}
+.fa-user::before	{content: "\f007";}
+.fa-login::before	{content: "\f090";}
+.fa-logout::before	{content: "\f08b";}
+.fa-home::before	{content: "\f015";}
+.fa-download::before{content: "\f019";}
+.fa-edit::before	{content: "\f040";}
+.fa-star::before	{content: "\f005";}
+.fa-comments::before{content: "\f086";}
+.fa-tag::before		{content: "\f02b";}
+.fa-trash::before	{content: "\f1f8";}
+.fa-flask::before	{content: "\f0c3";}
+
+#div_recaptcha{display: inline-block;}
+
+*{cursor:url(/imagens/arrow.cur),auto;}
+*:focus{outline-color: #4a5;}
+*::selection{
+	background-color: #4a5;
+	color:#eee;
+}
+body{
+	margin:0;
+	padding:0;
+	border:0;
+	background: #eee;
+	color: #111;
+	font:normal 20px Arial, Helvetica, sans-serif;
+	text-align: center;
+	word-break: break-word;
+}
+img{border:0;}
+footer{
+	padding: 5px 0;
+	color:#aaa;
+}
+footer div{
+	margin: 0 1em;
+}
+footer a{color: #ddd;}
+footer a:hover{color: #fff;}
+footer p{
+	font-size: 16px;
+	margin: 5px;
+}
+nav, footer{
+	background-color: #333;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+nav a{
+	padding: 16px;
+	color: white;
+	text-decoration: none;
+	flex-grow: 1;
+}
+nav > a{
+	font-family: grobold;
+}
+nav div{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	flex-grow: 4;
+}
+nav a:hover{
+	background-color: #111;
+}
+nav .active:hover, nav a:active, nav .active{
+	background-color: #4a5;
+}
+main{
+	padding: 2em;
+}
+main#home{text-align: justify;}
+section{
+	border-bottom: 2px solid #ccc;
+}
+form{margin: 0}
+form label{
+	color: #4a5;
+	padding: 0 10px;
+	display: inline-block;
+	border-bottom: 4px solid;
+}
+form label:hover{color: #111;}
+input[type="file"]{
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+input[type="text"],input[type="email"],input[type="password"],textarea{
+	width: 100%;
+	font-size: 16px;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+textarea{text-align: justify;}
+input[type="submit"], select{
+	display: block;
+	margin: 10px auto;
+	font-size: 20px;
+	color: #4a5;
+	padding: 0 10px;
+	border: none;
+	border-bottom: 4px solid;
+	background-color: inherit;
+	text-transform: capitalize;
+}
+input[type="submit"]:hover{color: #111;}
+option:focus{background-color: #4a5;}
+
+.tag{
+	color: #4a5;
+	border: 0;
+	padding-left: 5px;
+	text-decoration: none;
+}
+.tag::before{
+	font-family: FontAwesome;
+	content: "\f02b";
+}
+.tag:hover{color: #111;}
+@keyframes piscadinha {
+	0%   {outline: 0px solid transparent;}
+	50%  {color: #4a5;outline: 10px solid #4a5;}
+	100% {outline: 0px solid transparent;}
+}
+.efeito_piscadinha {
+	animation-name: piscadinha;
+	animation-duration: 1s;
+}
+.mensagem_de_erro{
+	color: red;
+}
+.imagem_bolinha{
+	background-color: #eee;
+	padding: 2px;
+	border: 3px solid #4a5;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.link_padrao{
+	color: #4a5;
+	padding: 0 10px;
+	border-bottom: 4px solid;
+	text-decoration: none;
+}
+.link_padrao:hover{color: #111;}
+
+main#login{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+main#login section:first-child{min-width: 240px;}
+main#login section{
+	flex: 1;
+	padding: 0 1em;
+	max-width: 1000px;
+}
+
+main#perfil section{
+	clear: both;
+}
+main#perfil section img#imagem_perfil{
+	float: left;
+	margin-right: 1em;
+	width: 150px;
+	height: 150px;
+}
+main#perfil section img#imagem_perfil~h1{
+	word-break: normal;
+}
+main#perfil #bio{
+	text-align: justify;
+}
+main#perfil .conquista{
+	display: inline-block;
+	position: relative;
+}
+main#perfil .conquista::before{
+	margin-right: 0;
+	font-size: 200px;
+	text-shadow: 1px 2px black,-2px -1px white;
+}
+main#perfil .conquista .nome, main#perfil .conquista .descricao{
+	opacity: 0;
+	position: absolute;
+	border-bottom: 3px solid #4a5;
+	background-color: rgba(51,51,51,0.9); /*#333*/
+	width: 100%;
+	padding: 1em 0;
+	color: white;
+}
+main#perfil .conquista .nome{top: 0;}
+main#perfil .conquista .descricao{bottom: 0;}
+main#perfil .conquista:hover .nome, main#perfil .conquista:hover .descricao{
+	opacity: 1;
+}
+main#perfil .conquista.bronze{color: sienna;}
+main#perfil .conquista.prata{color: silver;}
+main#perfil .conquista.ouro{color: gold;}
+
+main#builders a{
+	text-decoration: none;
+	color: #111;
+	font-size: 1.5em;
+	display: inline-block;
+	margin: 0.5em 1em;
+}
+main#builders a img{
+	width: 150px;
+	height: 150px;
+	margin: 10px auto;
+}
+main#builders a:hover img{border-color: #111;}
+
+.miniatura{
+	display: inline-block;
+	position: relative;
+	color: white;
+}
+.miniatura div.nome, .miniatura div.rating, .miniatura img.autor{
+	opacity: 0;
+	position: absolute;
+	border-bottom: 3px solid #4a5;
+	background-color: rgba(51,51,51,0.9); /*#333*/
+}
+.miniatura:hover div.nome, .miniatura:hover div.rating, .miniatura:hover img.autor{
+	opacity: 1;
+}
+.miniatura div.nome{
+	bottom: 0;
+	width: 100%;
+	padding: 1em 0;
+}
+.miniatura div.rating{
+	top: 0;
+	right: 0;
+	text-align: right;
+	padding: 5px;
+}
+.miniatura div.rating span{
+	font-family: FontAwesome;
+	padding-left: 5px;
+}
+.miniatura img.autor{
+	top: 0;
+	left: 0;
+	width: 75px;
+	height: 75px;
+	background-color: rgba(238,238,238,0.6); /*#eee*/
+}
+.miniatura img.imagem{
+	width: 300px;
+	max-width: 100%;
+}
+
+main#build #modded{
+	display: none;
+	position: absolute;
+	font-size: 2em;
+	color: #333;
+	font-family: grobold;
+}
+main#build #modded::after{
+	content: "Require Mods";
+	font-size: 0.75em;
+}
+main#build .imagem{max-width: 100%;}
+main#build section#materiais>img{margin-left: 1em;}
+main#build #dados div{
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	padding-left: 100px;
+}
+main#build #dados img.autor{
+	width: 75px;
+	height: 75px;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	position: absolute;
+}
+main#build #dados img:hover{border: 3px solid #111;}
+main#build #dados p.nome_do_template{font-weight: bold;}
+main#build #dados p.nome_do_template span{font-weight: normal;}
+main#build #dados p.nome_do_template span.icone_estrela{
+	padding-left: 20px;
+	font-family: FontAwesome;
+	color: #4a5;
+}
+main#build #dados p.autor{font-size: 0.9em;}
+main#build #dados div+div{
+	padding: 0 5px;
+	text-align: center;
+	border-left: 2px solid #ccc;
+}
+
+main#build #comentar img{
+	width: 75px;
+	height: 75px;
+	transform: translateY(17px);
+}
+main#build #comentar textarea{
+	width: calc(100% - 100px);
+	height: 50px;
+	margin: 0;
+}
+main#build #comentar input{
+	height: 0px;
+	border-color: transparent;
+	transition: 0.5s;
+}
+main#build #comentar input.visivel{
+	height: 27px;
+	border-color: inherit;
+}
+
+main#build #comentarios div.um_dos_comentarios{
+	border-bottom: 2px solid #ccc;
+}
+main#build #comentarios div.um_dos_comentarios img{
+	width: 75px;
+	height: 75px;
+	vertical-align: top;
+	margin: 0.5em;
+}
+main#build #comentarios div.um_dos_comentarios img:hover{border: 3px solid #111;}
+main#build #comentarios div.um_dos_comentarios div{
+	display: inline-block;
+	width: calc(100% - (100px + 1em));
+	text-align: left;
+}
+main#build #comentarios div.um_dos_comentarios span{
+	font-size: 0.9em;
+	opacity: 0.5;
+	margin-left: 1em;
+	display: inline-block;
+}
