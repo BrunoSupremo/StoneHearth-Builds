@@ -101,16 +101,17 @@ include("../session.php");
 			</form>
 		</section>
 		<?php
-		$result=mysqli_query($conn,"
-			SELECT templates.id as templates_id, templates.nome, templates.imagem as templates_imagem, templates.contador_downloads, usuarios.imagem as usuarios_imagem, COUNT(distinct estrelas.usuario) as quantidade_estrelas, COUNT(distinct comentarios.id) as quantidade_comentarios
-			FROM templates
-			INNER JOIN usuarios ON templates.usuario=usuarios.id
-			LEFT JOIN comentarios ON templates.id=comentarios.template
-			LEFT JOIN estrelas ON templates.id=estrelas.template
-			{$WHERE}
-			GROUP BY templates.id
-			{$ORDERBY}
-			");
+		$sql = "
+		SELECT templates.id as templates_id, templates.nome, templates.imagem as templates_imagem, templates.contador_downloads, usuarios.imagem as usuarios_imagem, COUNT(distinct estrelas.usuario) as quantidade_estrelas, COUNT(distinct comentarios.id) as quantidade_comentarios
+		FROM templates
+		INNER JOIN usuarios ON templates.usuario=usuarios.id
+		LEFT JOIN comentarios ON templates.id=comentarios.template
+		LEFT JOIN estrelas ON templates.id=estrelas.template
+		{$WHERE}
+		GROUP BY templates.id
+		{$ORDERBY}
+		";
+		$result=mysqli_query($conn, $sql . " Limit 60");//60 pois é divisivel por 2,3,4,5 e 6
 		while($loop=mysqli_fetch_assoc($result)){
 			?>
 			<a class="miniatura" href="/builds/?id=<?php echo $loop['templates_id']; ?>">
@@ -126,6 +127,24 @@ include("../session.php");
 			<?php
 		}
 		?>
+		<script type="text/javascript">
+			function load_more_builds(button,load_page) {
+				button.style.display = 'none';
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var new_div = document.createElement("div");
+						new_div.innerHTML = this.responseText;
+						document.querySelectorAll("main")[0].appendChild(new_div);
+						reset_images();
+					}
+				};
+				xhttp.open("POST", "load_more_builds.php", true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("tag=<?php echo $tag; ?>&order=<?php echo $order; ?>&page="+load_page);
+			}
+		</script>
+		<div class="link_padrao" onclick="load_more_builds(this,2);">Show More...</div>
 	</main>
 	<?php include("../footer.php"); ?>
 </body>

@@ -8,14 +8,17 @@
 		<p><a href="/other_sites/">Other SH related sites</a></p>
 	</div>
 	<script type="text/javascript">
-		var x = document.querySelectorAll(".imagem_bolinha");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			x[i].addEventListener("error", function(){
-				if (this.src != '/imagens/profile.png'){
-					this.src='/imagens/profile.png';
-				}
-			});
+		function reset_images(){
+			var x = document.querySelectorAll(".imagem_bolinha");
+			var i;
+			for (i = 0; i < x.length; i++) {
+				x[i].addEventListener("error", function(){
+					if (this.src != '/imagens/profile.png'){
+						this.src='/imagens/profile.png';
+					}
+				});
+			}
 		}
+		reset_images();
 	</script>
 </footer>
