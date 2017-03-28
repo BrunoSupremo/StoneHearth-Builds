@@ -29,9 +29,17 @@ if( isset( $_SESSION['logado']) ){
 				<p>About me:</p>
 				<textarea name=bio placeholder="Optional. A little about you in less than 1000 characters. You can add contacts or links to anything about you."><?php echo $perfil['bio']; ?></textarea>
 			</section>
-			<section>
-				<p>Profile image (url):</p>
-				<input type="text" name="imagem" required value="<?php echo $perfil['imagem']; ?>">
+			<section class="flex">
+				<img src="<?php echo $perfil['imagem']; ?>" id="preview" class="imagem_bolinha" style="height: 90px; width: 90px; flex: 0; margin: 5px;">
+				<div style="flex: 1; min-width: 200px;">
+					<p>Profile image (url):</p>
+					<input oninput="update_imagem()" type="text" id="imagem" name="imagem" required value="<?php echo $perfil['imagem']; ?>">
+				</div>
+				<script type="text/javascript">
+					function update_imagem() {
+						document.getElementById("preview").src=document.getElementById("imagem").value;
+					}
+				</script>
 			</section>
 			<section>
 				<p>New password:</p>

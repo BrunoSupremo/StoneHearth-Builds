@@ -33,7 +33,7 @@ if( isset($_GET['id']) && ($_GET['id'] > 0) ){
 ?>
 <html>
 <head>
-	<title><?php echo $build['templates_nome']; ?> by <?php $exploded=explode("@", $build['usuarios_nome']); echo $exploded[0]; ?></title>
+	<title><?php echo $build['templates_nome']; ?> by <?php echo $build['usuarios_nome']; ?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/css.css" type="text/css">
@@ -83,7 +83,7 @@ if( isset($_GET['id']) && ($_GET['id'] > 0) ){
 					<span class="icone_estrela">&#xf005</span>
 					<span id=contador_estrelas><?php echo $build['estrelas']; ?></span>
 				</p>
-				<p class="autor">by <a class="link_padrao" href="/profile/?user=<?php echo $build['usuarios_id']; ?>"><?php $exploded=explode("@", $build['usuarios_nome']); echo $exploded[0]; ?></a> on <?php echo date("M d, Y",strtotime($build['data'])); ?></p>
+				<p class="autor">by <a class="link_padrao" href="/profile/?user=<?php echo $build['usuarios_id']; ?>"><?php echo $build['usuarios_nome']; ?></a> on <?php echo date("M d, Y",strtotime($build['data'])); ?></p>
 			</div>
 			<div>
 				<?php
@@ -208,7 +208,7 @@ if( isset($_GET['id']) && ($_GET['id'] > 0) ){
 					<div>
 						<p>
 							<a class="link_padrao" href="/profile/?user=<?php echo $loop['id']; ?>">
-								<?php $exploded=explode("@", $loop['nome']); echo $exploded[0]; ?>
+								<?php echo $loop['nome']; ?>
 							</a>
 							<span><?php echo date("M d, Y",strtotime($loop['data'])); ?></span>
 						</p>

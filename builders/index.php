@@ -12,7 +12,13 @@ include("../session.php");
 <body>
 	<?php include("../nav.php"); ?>
 	<main id="builders">
-		<section id="ordem_e_filtros">
+		<section id="ordem_e_filtros" style="display: none;">
+
+			<!--
+			tirar o display none ali de cima quando for implementar isso direito
+			tirar o display none ali de cima quando for implementar isso direito
+			tirar o display none ali de cima quando for implementar isso direito-->
+
 			<form enctype="multipart/form-data" method="GET">
 				<?php
 				$WHERE = "";
@@ -76,7 +82,7 @@ include("../session.php");
 			?>
 			<a href="/profile/?user=<?php echo $loop['id'] ?>">
 				<img class="imagem_bolinha" src="<?php echo $loop['imagem']; ?>">
-				<div><?php $exploded=explode("@", $loop['nome']); echo $exploded[0]; ?></div>
+				<div><?php echo $loop['nome']; ?></div>
 			</a>
 			<?php
 		}

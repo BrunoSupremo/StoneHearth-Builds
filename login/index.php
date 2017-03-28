@@ -16,7 +16,7 @@ if( isset($_SESSION['logado']) ){
 </head>
 <body>
 	<?php include("../nav.php"); ?>
-	<main id="login">
+	<main id="login" class="flex">
 		<section>
 			<h1>Login</h1>
 			<?php

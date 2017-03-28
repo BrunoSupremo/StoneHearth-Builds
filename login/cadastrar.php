@@ -36,15 +36,18 @@ if( $response.success == false ){
 
 if( !$falhou ){
 	$imagem = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=http%3A%2F%2Fstonehearthbuilds.net16.net%2Fimagens%2Fprofile.png&s=150";
+	$exploded=explode("@", $email);
+	$nome = $exploded[0];
+
 	$stmt = $conn->prepare("INSERT INTO usuarios 
 		(email,senha,nome,imagem,data) VALUES 
 		(?, ?, ?, ?, now())"
 		);
-	$stmt->bind_param("ssss", $email, $senha, $email, $imagem);
+	$stmt->bind_param("ssss", $email, $senha, $nome, $imagem);
 	$stmt->execute();
 	$_SESSION['logado'] = true;
 	$_SESSION['id'] = mysqli_insert_id($conn);
-	$_SESSION['nome'] = $email;
+	$_SESSION['nome'] = $nome;
 	$_SESSION['imagem'] = $imagem;
 
 	setcookie("login", "{$senha}_{$email}", time()+60*60*24*31, "/");

@@ -30,7 +30,7 @@ if( isset($_GET['user']) && ($_GET['user'] > 0) ){
 ?>
 <html>
 <head>
-	<title><?php $exploded=explode("@", $perfil['nome']); echo $exploded[0]; ?></title>
+	<title><?php echo $perfil['nome']; ?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/css.css" type="text/css">
@@ -56,7 +56,7 @@ if( isset($_GET['user']) && ($_GET['user'] > 0) ){
 		?>
 		<section>
 			<img id="imagem_perfil" class="imagem_bolinha" src="<?php echo $perfil['imagem']; ?>">
-			<h1><?php $exploded=explode("@", $perfil['nome']); echo $exploded[0]; ?></h1>
+			<h1><?php echo $perfil['nome']; ?></h1>
 			<p id="bio"><?php echo nl2br($perfil['bio']); ?></p>
 		</section>
 		<section>

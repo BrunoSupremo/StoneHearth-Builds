@@ -1,4 +1,8 @@
-﻿mostrar mais builds do mesmo autor
+﻿Mods filter
+Suporte para multiplas imagens por build
+
+
+mostrar mais builds do mesmo autor
 mostrar builds com as mesmas tags
 
 tags sugeridas pelos usuarios
