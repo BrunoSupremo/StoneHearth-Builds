@@ -28,7 +28,11 @@ if( !$captcha ){
 	$falhou = true;
 	$error = "empty_captcha";
 }
-$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret = 6LdV-RsTAAAAAGNRTbQhI0XhgoDeG6dWsPpS1ZAG&response = ".$captcha."&remoteip = ".$_SERVER['REMOTE_ADDR']);
+
+$context = stream_context_create(array(
+    'http' => array('ignore_errors' => true),
+));//gambiarra pra fazer o file_get_contents() parar de dar warning, sei la porque...
+$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret = 6LdV-RsTAAAAAGNRTbQhI0XhgoDeG6dWsPpS1ZAG&response = ".$captcha."&remoteip = ".$_SERVER['REMOTE_ADDR'],false, $context);//false, $context); adicionado pra gambiarra acima, antes não tinha isso
 if( $response.success == false ){
 	$falhou = true;
 	$error = "captcha_failed";
