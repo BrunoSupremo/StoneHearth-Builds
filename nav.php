@@ -9,6 +9,18 @@
 			?>
 			<a class="fa fa-user" href="/profile/?user=<?php echo $_SESSION['id']; ?>"><?php echo $_SESSION['nome']; ?></a>
 			<?php
+			$result_notificacoes_nav=mysqli_query($conn,"
+				SELECT COUNT(comentarios.id) as quantidade
+				FROM comentarios
+				INNER JOIN templates ON templates.id=comentarios.template
+				WHERE visto = 0 AND templates.usuario = {$_SESSION['id']}
+				");
+			$notificacoes_nav = mysqli_fetch_assoc($result_notificacoes_nav);
+			if($notificacoes_nav['quantidade'] > 0){
+				?>
+				<a class="fa fa-bell" href="/notifications/?user=<?php echo $_SESSION['id']; ?>"><?php echo $notificacoes_nav['quantidade']; ?></a>
+				<?php
+			}
 		}else{
 			?>
 			<a class="fa fa-login" rel="nofollow" href="/login/">Login</a>
@@ -28,6 +40,6 @@
 		?>
 		if(!(location.pathname == "/profile/") || (location.search == "?user=<?php echo $id_perfil; ?>")){
 			link[0].className += " active";
+		}
 	}
-}
 </script>

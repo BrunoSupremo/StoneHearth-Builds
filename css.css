@@ -27,6 +27,7 @@
 .fa-tag::before		{content: "\f02b";}
 .fa-trash::before	{content: "\f1f8";}
 .fa-flask::before	{content: "\f0c3";}
+.fa-bell::before	{content: "\f0f3";}
 
 #div_recaptcha{display: inline-block;}
 
@@ -47,6 +48,7 @@ body{
 	word-break: break-word;
 }
 img{border:0;}
+h1{font-size:1.5em;}
 footer{
 	padding: 5px 0;
 	color:#aaa;
