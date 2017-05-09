@@ -39,7 +39,18 @@ if( isset($_GET['id']) && ($_GET['id'] > 0) ){
 	<link rel="stylesheet" href="/css.css" type="text/css">
 </head>
 <body>
-	<?php include("../nav.php"); ?>
+	<?php
+	if($dono_da_build){
+		$stmt = $conn->prepare("
+			UPDATE comentarios
+			set visto=1
+			WHERE template=? AND visto=0
+			");
+		$stmt->bind_param("i", $build['templates_id']);
+		$stmt->execute();
+	}
+	include("../nav.php");
+	?>
 	<main id="build">
 		<span id="modded" class="fa fa-flask"></span>
 		<img class="imagem" src="<?php echo $build['templates_imagem']; ?>">

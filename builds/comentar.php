@@ -24,6 +24,12 @@ if( isset($_POST['texto']) && (trim($_POST['texto'])!="") && isset($_POST['templ
 		$stmt->bind_param("si", $texto, $ultimo_comentario['id']);
 		$stmt->execute();
 	}else{
+		$result_dono_da_build = mysqli_query($conn,"
+			SELECT usuario
+			FROM templates
+			WHERE id = {$template_id}
+			");
+		$dono_da_build = mysqli_fetch_assoc($result_dono_da_build);
 		$stmt = $conn->prepare("INSERT INTO comentarios 
 			(texto,usuario,data,template) VALUES 
 			(?, ?, now(), ?)"
