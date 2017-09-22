@@ -11,8 +11,19 @@ if( isset($_POST['tag']) && (!empty($_POST['tag'])) ){
 	$tag = $_POST['tag'];
 	$WHERE = "WHERE templates.id IN
 	(SELECT DISTINCT template FROM tags_nos_templates WHERE tag =
-	(SELECT id FROM tags WHERE nome = '".mysqli_real_escape_string($conn, $tag)."')
+		(SELECT id FROM tags WHERE nome = '".mysqli_real_escape_string($conn, $tag)."')
 	)";
+}
+$mod="";
+if( isset($_POST['mod']) && (!empty($_POST['mod'])) ){
+	$mod = $_POST['mod'];
+	if($mod == "false"){
+		if( empty($WHERE) ){
+			$WHERE = "WHERE templates.modded = 'false'";
+		}else{
+			$WHERE = $WHERE . " AND templates.modded = 'false'";
+		}
+	}
 }
 $ORDERBY = "ORDER BY templates.id DESC";
 $order="newest";

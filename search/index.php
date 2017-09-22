@@ -29,6 +29,9 @@ include("../session.php");
 					if(document.querySelector('#tag').value==""){
 						document.querySelector('#tag').removeAttribute("name");
 					}
+					if(document.querySelector('#mod').value==""){
+						document.querySelector('#mod').removeAttribute("name");
+					}
 				}
 			</script>
 			<form enctype="multipart/form-data" method="GET" onsubmit="remover_parametro_vazio_da_url()">
@@ -39,8 +42,19 @@ include("../session.php");
 					$tag = $_GET['tag'];
 					$WHERE = "WHERE templates.id IN
 					(SELECT DISTINCT template FROM tags_nos_templates WHERE tag =
-					(SELECT id FROM tags WHERE nome = '".mysqli_real_escape_string($conn, $tag)."')
+						(SELECT id FROM tags WHERE nome = '".mysqli_real_escape_string($conn, $tag)."')
 					)";
+				}
+				$mod="";
+				if( isset($_GET['mod']) && (!empty($_GET['mod'])) ){
+					$mod = $_GET['mod'];
+					if($mod == "false"){
+						if( empty($WHERE) ){
+							$WHERE = "WHERE templates.modded = 'false'";
+						}else{
+							$WHERE = $WHERE . " AND templates.modded = 'false'";
+						}
+					}
 				}
 				$ORDERBY = "ORDER BY templates.id DESC";
 				$order="newest";
@@ -97,6 +111,19 @@ include("../session.php");
 						?>
 					</select>
 				</p>
+				<p>Mods allowed:
+					<select style="display:inline;" name="mod" id="mod">
+						<?php
+						if($mod!="false"){
+							echo '<option selected value="">Yes</option>';
+							echo '<option value="false">No</option>';
+						}else{
+							echo '<option value="">Yes</option>';
+							echo '<option selected value="false">No</option>';
+						}
+						?>
+					</select>
+				</p>
 				<input type="submit" id="submit" value="Sort and Filter">
 			</form>
 		</section>
@@ -141,7 +168,7 @@ include("../session.php");
 				};
 				xhttp.open("POST", "load_more_builds.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhttp.send("tag=<?php echo $tag; ?>&order=<?php echo $order; ?>&page="+load_page);
+				xhttp.send("mod=<?php echo $mod; ?>&tag=<?php echo $tag; ?>&order=<?php echo $order; ?>&page="+load_page);
 			}
 		</script>
 		<div class="link_padrao" onclick="load_more_builds(this,2);">Show More...</div>

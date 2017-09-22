@@ -1,14 +1,15 @@
 ﻿erro 404{
-content not found. Sorry...
-Were you looking for a specific build? Try the search www...
-Or are you trying to check a user profile? Then look at www...
+	content not found. Sorry...
+	Were you looking for a specific build? Try the search www...
+	Or are you trying to check a user profile? Then look at www...
 
-If something went wrong, you can contact me at wwww....
+	If something went wrong, you can contact me at wwww....
 }
 
-Mods filter
+
 Suporte para multiplas imagens por build
 
+mostrar mods usados no template
 
 mostrar mais builds do mesmo autor
 mostrar builds com as mesmas tags
@@ -21,5 +22,25 @@ remover zips de builds já deletadas
 
 
 
-quantidade de cada item
-SELECT item, count(item), sum(quantidade), nome FROM `itens_nos_templates` left join itens on itens.id=itens_nos_templates.item group by item
+quantidade de cada item{
+	SELECT item, count(item), sum(quantidade), nome
+	FROM `itens_nos_templates`
+	left join itens on itens.id=itens_nos_templates.item
+	group by item
+}
+
+lista de templates com mod, ou atualizar templates pra modded=true{
+	/*
+	UPDATE templates
+	*/
+	select itens_nos_templates.template, templates.nome, templates.modded
+	from templates
+	/**/
+	inner join itens_nos_templates on itens_nos_templates.template=templates.id
+	inner join itens on itens.id=itens_nos_templates.item
+	/*
+	set templates.modded='true'
+	*/
+	WHERE itens.nome not like "stonehearth:%"
+	group by itens_nos_templates.template
+}

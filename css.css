@@ -46,6 +46,8 @@ body{
 	font:normal 20px Arial, Helvetica, sans-serif;
 	text-align: center;
 	word-break: break-word;
+	display: flex;
+	flex-direction: column;
 }
 img{border:0;}
 h1{font-size:1.5em;}
@@ -91,6 +93,7 @@ nav .active:hover, nav a:active, nav .active{
 }
 main{
 	padding: 2em;
+	flex-grow: 1;
 }
 main#home{text-align: justify;}
 section{
